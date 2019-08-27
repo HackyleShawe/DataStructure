@@ -35,7 +35,8 @@ void test02()
 }
 int main()
 {
-	test();
+	test01();
+	test02();
 	system("pause");
 	return 0;
 }
