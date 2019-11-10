@@ -1,5 +1,9 @@
 # DataStructure
-数据结构的原理和实现代码；C语言实现；C代码片段；C代码库；
+数据结构的原理和实现代码；C语言实现；C代码片段；C代码库；  
+
+> 注：因为在GitHub上不方面展示大量的文字和图标说明，具体原理与实现的过程请移步我的CSDN博客：https://kyleshawe.blog.csdn.net/
+>
+> 
 
 # 01 线性表(Linear List)
 
