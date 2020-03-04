@@ -15,7 +15,7 @@ void ShellInsertSort(int *a, int length)
 	int i, j, d; //d是增量，每次减半
 	int temp;
 
-	for (d = length / 2; d > 0; d /= 2)
+	for (d = length / 2; d > 0; d /= 2) /*条件不能是：d>=0；会造成死循环*/
 	{
 		for (i = d; i < length; i+=d)
 		{

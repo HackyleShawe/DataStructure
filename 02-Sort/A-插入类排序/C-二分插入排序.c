@@ -32,9 +32,9 @@ void BinaryInsertSort(int *a, int length)
 				left = mid + 1;
 			}
 		}
-		for (j = i - 1; j > right; j--)
+		for (j = i - 1; j > right; j--) //挪
 		{
-			a[j + 1] = a[j];
+			a[j + 1] = a[j]; 
 		}
 		a[left] = temp; //插；这里是left？——不理解就画图演算一下；
 	}

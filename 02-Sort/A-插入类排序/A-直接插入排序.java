@@ -6,21 +6,6 @@ import org.junit.Test;
 public class InsertSort {
 	private int n = 10;
 	
-	public void getArray(int[] a, int n) {
-		Random r = new Random();
-		for(int i=0; i<n; i++) {
-			a[i] = r.nextInt(1000);
-		}
-		showArray(a,n);
-	}
-	public void showArray(int[] a, int n) {
-		for(int i=0; i<n; i++) {
-			System.out.print(a[i] + " ");
-		}
-		System.out.println();
-	}
-	
-	
 	/**
 	 * 直接插入排序
 	 */
@@ -40,5 +25,19 @@ public class InsertSort {
 		
 		showArray(a,n);
 	}
+
 	
+	public void getArray(int[] a, int n) {
+		Random r = new Random();
+		for(int i=0; i<n; i++) {
+			a[i] = r.nextInt(1000);
+		}
+		showArray(a,n);
+	}
+	public void showArray(int[] a, int n) {
+		for(int i=0; i<n; i++) {
+			System.out.print(a[i] + " ");
+		}
+		System.out.println();
+	}
 }
