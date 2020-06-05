@@ -1,4 +1,4 @@
-题目：将顺序表L的所有元素逆置，要求时间复杂度为O(1);
+//将顺序表L的所有元素逆置，要求时间复杂度为O(1);
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
