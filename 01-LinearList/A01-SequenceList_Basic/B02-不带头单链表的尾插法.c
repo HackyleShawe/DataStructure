@@ -10,30 +10,42 @@ typedef struct Node
 }ListNode, * LinkList;
 
 /*
-Algorithm Core：
-	每次插入的新节点都在开头处
-*/
-LinkList Create_HeadInsert()
+ * 目标功能：尾插法
+ * Algorithm Core：
+ *   每次插入的新节点都在结尾处
+ */
+LinkList Create_Tail_Insert()
 {
-	LinkList s;
-	LinkList L;
+	LinkList L = NULL;
+	LinkList s, r = NULL;
 	int x;
-	L = (LinkList)malloc(sizeof(ListNode)); //创建头结点，如果不想要头结点，则删除这两行代码
-	L->next = NULL;
+
 	scanf("%d", &x);
 	while (x != 99)
 	{
-		s = (LinkList)malloc(sizeof(ListNode));
+		s = (ListNode*)malloc(sizeof(ListNode));
 		s->data = x;
-		s->next = L->next; //s->next指向L的后面一个元素，L->next代表着L的后面一个；
-		L->next = s;
+		if (L == NULL) //对第一个节点的处理
+		{
+			L = s;
+		}
+		else //非第一个节点的处理
+		{
+			r->next = s;
+		}
+		r = s;
 		scanf("%d", &x);
+	}
+	if (r != NULL)
+	{
+		r->next = NULL;
 	}
 	return L;
 }
+
 void show(LinkList L)
 {
-	LinkList p = L->next;
+	LinkList p = L;
 	while (p)
 	{
 		printf("%d ", p->data);
@@ -41,10 +53,11 @@ void show(LinkList L)
 	}
 	printf("\n");
 }
+
 void test01()
 {
 	LinkList L;
-	L = Create_HeadInsert();
+	L = Create_Tail_Insert();
 	show(L);
 }
 int main()

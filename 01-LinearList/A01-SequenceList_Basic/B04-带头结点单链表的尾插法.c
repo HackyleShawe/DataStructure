@@ -7,44 +7,37 @@ typedef struct Node
 {
 	ElemType data;
 	struct Node* next;
-}ListNode, * LinkList; //
+}ListNode, * LinkList;
 
-/*尾插法
-Algorithm Core：
-	每次插入的新节点都在结尾处
-*/
+/*
+ * 函数功能：尾插法创建一个链表
+ * Algorithm Core：
+ *	 每次插入的新节点都在结尾处
+ */
 LinkList Create_Tail_Insert()
 {
-	LinkList L = NULL;
-	LinkList s, r = NULL;
+	LinkList L;
+	LinkList s, r;
 	int x;
+	L = (LinkList)malloc(sizeof(ListNode)); //创建头结点，如果不想要头结点，则删除这两行代码
+	L->next = NULL;
 
+	r = L; //r指向头指针
 	scanf("%d", &x);
 	while (x != 99)
 	{
-		s = (ListNode*)malloc(sizeof(ListNode));
+		s = (LinkList)malloc(sizeof(ListNode));
 		s->data = x;
-		if (L == NULL) //对第一个节点的处理
-		{
-			L = s;
-		}
-		else //非第一个节点的处理
-		{
-			r->next = s;
-		}
+		r->next = s;
 		r = s;
 		scanf("%d", &x);
 	}
-	if (r != NULL)
-	{
-		r->next = NULL;
-	}
+	r->next = NULL;
 	return L;
 }
-
 void show(LinkList L)
 {
-	LinkList p = L;
+	LinkList p = L->next;
 	while (p)
 	{
 		printf("%d ", p->data);
@@ -52,7 +45,6 @@ void show(LinkList L)
 	}
 	printf("\n");
 }
-
 void test01()
 {
 	LinkList L;

@@ -12,9 +12,10 @@ typedef struct {
 }SqList;
 
 /*
-算法思想：
-	遍历前半部分，把a[i++]与a[n-i-1]交换；
-*/
+ * 函数功能：顺序表元素逆置
+ * 算法思想：
+ *   遍历前半部分，把a[i++]与a[n-i-1]交换；
+ */
 void reverse(SqList& L)
 {
 	int i, n;

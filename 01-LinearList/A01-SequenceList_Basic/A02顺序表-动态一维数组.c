@@ -2,7 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*
+ * 函数功能：
+ *   实现静态数组
+ */
 void static_array()
 {
 	int a[10];
@@ -11,11 +14,11 @@ void static_array()
 }
 
 /*
-函数功能：
-	实现动态数组
-算法思想：
-	malloc运行时动态分配内存
-*/
+ * 函数功能：
+ *   实现动态数组
+ * 算法思想：
+ *   malloc运行时动态分配内存
+ */
 void dynamic_array()
 {
 	int* a;
