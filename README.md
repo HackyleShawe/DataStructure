@@ -32,6 +32,12 @@
 - C/C++：Visual Studio 2019
 - Java：Eclipse 2019-12
 
+
+
+**<u>另外，需要额外强调一点，看代码的神器：Sublime Text 3 （用过的都说好~~~）</u>**
+
+
+
 ---
 
 # 01 线性表(Linear List)
