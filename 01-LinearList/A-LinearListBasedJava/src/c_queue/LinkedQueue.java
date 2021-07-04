@@ -1,17 +1,27 @@
 package c_queue;
 
+import org.w3c.dom.Node;
+
 import java.util.Iterator;
 
 /**
- * 自己实现队列
+ * 链式队列
  */
-class MyQueue<T> implements Iterable<T> {
-    private Node head; //队首
-    private Node last; //队尾
+class LinkedQueue<T> implements Iterable<T> {
+    /** 队首 */
+    private Node head;
+    /** 队尾 */
+    private Node last;
+    /** 队列中元素的个数 */
     private Long N;
 
+    /**
+     * 节点定义
+     */
     private class Node {
+        /** 节点内的数据 */
         private T data;
+        /** 下一个节点 */
         private Node next;
 
         public Node(T data, Node next) {
@@ -20,14 +30,20 @@ class MyQueue<T> implements Iterable<T> {
         }
     }
 
-    public MyQueue() {
+    /**
+     * 构造器：创建队列头，队列尾尾null
+     */
+    public LinkedQueue() {
         this.head = new Node(null,null);
         this.last = null;
         this.N = 0L;
     }
 
 
-    /*入队列*/
+    /**
+     * 入队列
+     * @param t 要入队列的元素
+     */
     public void enqueue(T t) {
         if(last == null) {
             last = new Node(t, null);
@@ -40,7 +56,10 @@ class MyQueue<T> implements Iterable<T> {
         N++;
     }
 
-    /*出队列*/
+    /**
+     * 出队列
+     * @return 出队列后的元素
+     */
     public T dequeue() {
         if(isEmpty()) {
             return null;
@@ -56,19 +75,30 @@ class MyQueue<T> implements Iterable<T> {
         return oldHead.data;
     }
 
+    /**
+     * 获取队列中的元素个数
+     * @return 元素个数
+     */
     public Long size() {
         return N;
     }
+
+    /**
+     * 队列是否为空
+     */
     public boolean isEmpty() {
         return N==0;
     }
 
+    /**
+     * 迭代器
+     */
     @Override
     public Iterator<T> iterator() {
         return new QueueIterator();
     }
-    private class QueueIterator implements Iterator {
-        private Node tmp;
+    private class QueueIterator implements Iterator<T> {
+        private LinkedQueue<T>.Node tmp;
         public QueueIterator() {
             tmp = head;
         }
@@ -85,9 +115,13 @@ class MyQueue<T> implements Iterable<T> {
     }
 }
 
-class MyQueueTest {
-    public static void main(String[] args) throws Exception {
-        MyQueue<String> queue = new MyQueue<>();
+
+/**
+ * 链式队列测试
+ */
+class LinkedQueueTest {
+    public static void main(String[] args) {
+        LinkedQueue<String> queue = new LinkedQueue<>();
         queue.enqueue("aa");
         queue.enqueue("bb");
         queue.enqueue("cc");

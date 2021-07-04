@@ -6,28 +6,41 @@ import java.util.Iterator;
 /**
  * 链式栈：栈 + 单链表
  */
-public class MyStack<T> implements Iterable<T>  {
-    private Node<T> top; //栈顶
-    private Long N; //个数
+public class LinkedStack<T> implements Iterable<T>  {
+    /** 栈顶 */
+    private Node top;
+    /** 栈内元素的个数 */
+    private Long N;
 
-    public MyStack() {
+    /**
+     * 构造器：初始化栈顶指针为null，元素个数为0
+     */
+    public LinkedStack() {
         top = null;
         N = 0L;
     }
 
-    /* 栈元素 */
-    private class Node<T> {
+    /**
+     * 栈内元素节点的定义
+     */
+    private class Node {
+        /** 节点元素的类型 */
         T data;
+        /** 下一个元素的位置 */
         Node next;
+
         public Node(T data, Node next) {
             this.data = data;
             this.next = next;
         }
     }
 
-    /* 入栈：单链表的头插法 */
+    /**
+     * 入栈：单链表的头插法
+     * @param t 要入栈的元素
+     */
     public void push(T t) {
-        Node<T> newNode = new Node(t,null);
+        Node newNode = new Node(t,null);
         if(top == null) {
             top = newNode;
         } else {
@@ -36,7 +49,10 @@ public class MyStack<T> implements Iterable<T>  {
         }
     }
 
-    /* 出栈 */
+    /**
+     * 出栈：弹出单链表的头结点
+     * @return 出栈前栈顶的元素
+     */
     public T pop() {
         if(isEmpty()) {
             return null;
@@ -46,18 +62,22 @@ public class MyStack<T> implements Iterable<T>  {
         return  result;
     }
 
-    /* 判空 */
+    /**
+     * 是否为空
+     */
     public boolean isEmpty() {
         return N==0 || top == null;
     }
 
-    /* 栈遍历 */
+    /**
+     * 栈迭代器
+     */
     @Override
     public Iterator<T> iterator() {
         return new StackIterator();
     }
     private class StackIterator implements Iterator<T> {
-        private Node<T> t;
+        private Node t;
         public StackIterator() {
             t = top;
         }
@@ -76,9 +96,13 @@ public class MyStack<T> implements Iterable<T>  {
 
 }
 
-class MyStackTest {
-    public static void main(String[] args) throws Exception {
-        MyStack<String> stack = new MyStack<String>();
+
+/**
+ * 链式栈测试
+ */
+class LinkedStackTest {
+    public static void main(String[] args) {
+        LinkedStack<String> stack = new LinkedStack<String>();
         stack.push("aa");
         stack.push("bb");
         stack.push("CC");

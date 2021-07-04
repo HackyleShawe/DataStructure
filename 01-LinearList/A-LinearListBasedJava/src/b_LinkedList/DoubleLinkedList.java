@@ -1,16 +1,34 @@
 package b_LinkedList;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 
-public class MyDoubleLinkedList<T> implements Iterable<T> {
-    private Node head; //头指针
-    private Node last; //尾指针
-    private long N; //长度
+/**
+ * 双向链表
+ */
+public class DoubleLinkedList<T> implements Iterable<T> {
+    /** 头指针 */
+    private Node head;
+    /** 尾指针 */
+    private Node last;
+    /** 链表的长度 */
+    private long N;
 
-    /*节点*/
+    /**
+     * 链表节点定义
+     */
     private class Node {
+        /**
+         * 节点数据
+         */
         T data;
+        /**
+         * 后继
+         */
         Node next;
+        /**
+         * 前驱
+         */
         Node pre;
 
         public Node(T data, Node next, Node pre) {
@@ -20,14 +38,18 @@ public class MyDoubleLinkedList<T> implements Iterable<T> {
         }
     }
 
-    /*构造器*/
-    public MyDoubleLinkedList() {
+    /**
+     * 构造器：初始化双向链表的头结点，头节点不存数据
+     */
+    public DoubleLinkedList() {
         this.head = new Node(null,null,null);
         this.last = null;
         this.N = 0;
     }
 
-    /*增*/
+    /**
+     * 增：头插法
+     */
     public void insertHead(T t) {
         Node tmp = this.head;
         if(isEmpty() || tmp.next == null) {
@@ -42,6 +64,10 @@ public class MyDoubleLinkedList<T> implements Iterable<T> {
         }
         N++;
     }
+
+    /**
+     * 增：尾插法
+     */
     public void insertLast(T t) {
         if(isEmpty() || this.head.next == null) {
             Node newNode = new Node(t, null, this.head);
@@ -57,7 +83,9 @@ public class MyDoubleLinkedList<T> implements Iterable<T> {
     }
 
 
-    /*删*/
+    /**
+     * 删除所有
+     */
     public void clear() {
         this.head.next = null;
         this.head.pre = null;
@@ -65,6 +93,11 @@ public class MyDoubleLinkedList<T> implements Iterable<T> {
         this.last = null;
         this.N = 0;
     }
+
+    /**
+     * 删除指定元素
+     * @param t 待删除的元素
+     */
     public void remove(T t) {
         Node tmp = this.head.next;
         Node post = this.head;
@@ -77,22 +110,37 @@ public class MyDoubleLinkedList<T> implements Iterable<T> {
         }
     }
 
-    /*改*/
 
-
-    /*查*/
+    /**
+     * 获取双向链表的元素个数
+     * @return 链表数量
+     */
     public long length() {
         return this.N;
     }
+
+    /**
+     * 判断是否为空
+     */
     public boolean isEmpty() {
         return N==0;
     }
+
+    /**
+     * 获取头节点
+     * @return 头结点的元素
+     */
     public T getHead() {
         if(this.head.next == null) {
             return null;
         }
         return this.head.next.data;
     }
+
+    /**
+     * 获取尾节点
+     * @return 尾结点的元素
+     */
     public T getLast() {
         if(this.last == null) {
             return null;
@@ -100,33 +148,39 @@ public class MyDoubleLinkedList<T> implements Iterable<T> {
         return this.last.data;
     }
 
-    /*迭代*/
+    /**
+     * 正向迭代器
+     */
     @Override
     public Iterator<T> iterator() {
-        return new DLIterator();
+        return new DoubleListIterator();
     }
-    private class DLIterator implements Iterator<T> {
-        private Node n;
-        public DLIterator() {
-            this.n = head;
+    private class DoubleListIterator implements Iterator<T> {
+        private Node iterate;
+        public DoubleListIterator() {
+            this.iterate = head;
         }
         @Override
         public boolean hasNext() {
-            return n.next!=null;
+            return iterate.next!=null;
         }
 
         @Override
         public T next() {
-            n = n.next;
-            return n.data;
+            iterate = iterate.next;
+            return iterate.data;
         }
     }
 
 }
 
-class MyDoubleLinkedListTest {
+
+/**
+ * 双向链表测试
+ */
+class DoubleLinkedListTest {
     public static void main(String[] args) throws Exception {
-        MyDoubleLinkedList<Integer> linkedList = new MyDoubleLinkedList<Integer>();
+        DoubleLinkedList<Integer> linkedList = new DoubleLinkedList<Integer>();
         linkedList.insertHead(11);
         linkedList.insertHead(22);
         linkedList.insertLast(33);
@@ -142,7 +196,5 @@ class MyDoubleLinkedListTest {
         while(it.hasNext()) {
             System.out.print(it.next()+ "  ");
         }
-
     }
-
 }
