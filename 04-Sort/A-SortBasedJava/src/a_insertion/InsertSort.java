@@ -32,18 +32,29 @@ public class InsertSort {
     }
 }
 
-class InsertSortTest {
-    public static void main(String[] args) throws Exception {
-        Random random = new Random();
-        int len = Math.abs(random.nextInt()%100);
-        Integer[] arr = new Integer[len];
-        for(int i=0; i<len; i++) {
-            arr[i] = random.nextInt()%100; //构造随机数组
-        }
-        System.out.println(Arrays.toString(arr));
 
-        InsertSort.insertSort(arr);
-        System.out.println(Arrays.toString(arr));
+/**
+ * 测试：插入排序
+ */
+class InsertSortTest {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int len = Math.abs(random.nextInt()%15);
+        Integer[] arr01 = new Integer[len];
+        Double[] arr02 = new Double[len];
+        for(int i=0; i<len; i++) {
+            arr01[i] = random.nextInt()%100; //构造随机数组
+            arr02[i] = random.nextDouble()*1000;
+        }
+        System.out.println("Int型数组：");
+        System.out.println(Arrays.toString(arr01));
+        InsertSort.insertSort(arr01);
+        System.out.println(Arrays.toString(arr01));
+
+        System.out.println("Double型数组：");
+        System.out.println(Arrays.toString(arr02));
+        InsertSort.insertSort(arr02);
+        System.out.println(Arrays.toString(arr02));
     }
 
 }

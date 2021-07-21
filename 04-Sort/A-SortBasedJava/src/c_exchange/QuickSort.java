@@ -3,6 +3,9 @@ package c_exchange;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * 快速排序
+ */
 public class QuickSort {
     public static void quickSort(Comparable[] a) {
         int low = 0;
@@ -20,7 +23,13 @@ public class QuickSort {
         quickSort(a, pivot+1, high); //让枢轴值的右边有序
     }
 
-    //以枢轴(pivot)值进行分区操作
+    /**
+     * 以枢轴(pivot)值进行分区操作
+     * @param a 待排序的数组
+     * @param left 此次Partition的开始位置
+     * @param right 此次Partition的结束位置
+     * @return 返回枢轴值的下标
+     */
     public static int partition(Comparable[] a, int left, int right) {
         int pivot = left; //分区的基准值
 
@@ -41,6 +50,7 @@ public class QuickSort {
     private static boolean greater(Comparable a, Comparable b) {
         return a.compareTo(b) > 0;
     }
+
     public static void exchange(Comparable[] a, int i, int j) {
         Comparable t = a[i];
         a[i] = a[j];
@@ -49,10 +59,14 @@ public class QuickSort {
 
 }
 
+
+/**
+ * 测试：快速排序
+ */
 class QuickSortTest {
     public static void main(String[] args) throws Exception {
         Random random = new Random();
-        int len = Math.abs(random.nextInt()%10);
+        int len = Math.abs(random.nextInt()%20);
         Integer[] arr = new Integer[len];
         for(int i=0; i<len; i++) {
             arr[i] = random.nextInt()%100; //构造随机数组

@@ -3,8 +3,12 @@ package d_merge;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * 二路归并排序
+ */
 public class MergeSortInTwice {
-    private static Comparable[] assist; //辅助数组
+    /** 辅助数组 */
+    private static Comparable[] assist;
 
     public static void mergeSort(Comparable[] a) {
         assist = new Comparable[a.length];
@@ -61,6 +65,10 @@ public class MergeSortInTwice {
 
 }
 
+
+/**
+ * 测试：二路归并排序
+ */
 class MergeSortInTwiceTest {
     public static void main(String[] args) throws Exception {
         Random random = new Random();

@@ -2,6 +2,9 @@ package c_exchange;
 
 import java.util.Arrays;
 
+/**
+ * 冒泡排序
+ */
 public class BubbleSort {
     /**
      * 进行N-1回，每回把最大/小的速往前/后沉
@@ -42,5 +45,4 @@ class BubbleSortTest {
         BubbleSort.bubbleSort(arr);
         System.out.println(Arrays.toString(arr));
     }
-
 }
