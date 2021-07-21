@@ -1,97 +1,77 @@
 package c_CompleteBinTree;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 最小优先队列（本质：小顶堆）
  */
-public class PriorityQueueMin<T extends Comparable<T>> {
-    private T[] items; //最大优先队列基于堆，堆的存储结构为数组
-    private int N; //数组的长度
-
-    public PriorityQueueMin(int capacity) {
-        items = (T[]) new Comparable[capacity+1]; //注意基于堆的数组第一个元素（下标为0）是不使用的
-        this.N = 0;
-    }
+public class PriorityQueueMin<T extends Number> {
+    /** 最大优先队列基于堆，堆的存储结构为数组 */
+    private List<T> heapQueue;
 
     /**
-     * 获取队列中的元素个数
+     * 构造器
      */
-    public int size() {
-        return N;
-    }
-    /**
-     * 判断是否为空
-     */
-    public boolean isEmpty() {
-        return N == 0;
+    public PriorityQueueMin() {
+        heapQueue = new ArrayList<>();
+        heapQueue.add(null); //保存堆的数组，第一个元素是不存储值得
     }
 
     /**
-     * 比较大小
+     * <p>Function：入队列操作</p>
+     * <p>Algorithm：直接向数组末尾插入元素，然后再进行上浮操作</p>
      */
-    private boolean less(int i, int j) {
-        return items[i].compareTo(items[j])<0;
-    }
-    /**
-     * 交换
-     */
-    private void exchange(int i, int j) {
-        T tmp = items[i];
-        items[i] = items[j];
-        items[j] = tmp;
+    public void inQueue(T data) {
+        heapQueue.add(data);
+        swim(heapQueue.size() - 1);
     }
 
     /**
-     * 功能：入队列操作
-     * 算法：直接向数组末尾插入元素，然后再进行上浮操作
-     * @param t 要入队列的数据
-     */
-    public void tailInsert(T t) {
-        items[++N] = t;
-        swim(N);
-    }
-
-    /**
-     * 使用上浮算法，使索引k处的元素能在堆中处于一个正确的位置
-     * 比较交换当前节点与其父节点
+     * <p>Function：使用上浮算法，使索引k处的元素能在堆中处于一个正确的位置</p>
+     * <p>Algorithm: 比较交换当前节点与其父节点</p>
      * @param k 对当前节点k进行上浮操作
      */
     private void swim(int k) {
-        while(k>1){
+        while(k > 1){
             //比较当前节点与其父节点，小的往上交换
-            if (less(k,k/2)){ //大顶堆中的写法：less(k/2,k)
+            if (smaller(k,k/2)){ //大顶堆中的写法：smaller(k/2,k)
                 exchange(k,k/2);
             }
             k = k/2;
         }
     }
 
+
     /**
-     * 功能：出列对操作
-     * 算法：小顶堆中的最小值就是对数组中的下标为1的元素
-     *  1.取得下标为1的元素
-     *  2.交换数组中的下标为1的元素和数组的最后一个元素
-     *  3.下沉刚刚交换上来的元素
+     * <p>Function：出列对操作</p>
+     * <p>Algorithm：小顶堆中的最小值就是对数组中的下标为1的元素</p>
+     *  <ol>
+     *  <li>取得下标为1的元素</li>
+     *  <li>交换数组中的下标为1的元素和数组的最后一个元素</li>
+     *  <li>下沉刚刚交换上来的元素</li>
+     *  </ol>
      * @return 出队列的数据
      */
-    public T headEject() {
-        T max = items[1];
-        exchange(1,N);
-        N--;
+    public T getMinPriority() {
+        T max = heapQueue.get(1);
+        exchange(1, heapQueue.size() - 1);
         sink(1); //交换上的元素放在顶点，对顶点进行下沉
         return max;
     }
 
     /**
-     * 使用下沉算法，使索引k处的元素能在堆中处于一个正确的位置
-     * 比较交换当前节点与其子节点，使得最大值往下沉
+     * <p>Function:使用下沉算法，使索引k处的元素能在堆中处于一个正确的位置</p>
+     * <p>Algorithm:比较交换当前节点与其子节点，使得最大值往下沉</p>
      * @param k 对当前节点k进行下沉操作
      */
     private void sink(int k) {
-        while(2*k<=N){
+        while(2*k <= heapQueue.size()-1){
             int min;
-            if (2*k+1<=N){ //如果当前节点k有左右子节点
-                if (less(2*k,2*k+1)){ //比较左右子节点，返回最小子节点的下标
-                    min=2*k;
+            if (2*k+1 <= heapQueue.size()-1){ //如果当前节点k有左右子节点
+                if (smaller(2*k,2*k+1)){ //比较左右子节点，返回最小子节点的下标
+                    min = 2*k;
                 }else{
                     min = 2*k+1;
                 }
@@ -99,29 +79,65 @@ public class PriorityQueueMin<T extends Comparable<T>> {
                 min = 2*k;
             }
 
-            if (!less(k,min)){
+            if (!smaller(k, min)){
                 break;
             }
 
-            exchange(k,min);
+            exchange(k, min);
             k = min;
         }
     }
 
+    /**
+     * 判断是否为空
+     */
+    public boolean isEmpty() {
+        return heapQueue.isEmpty();
+    }
+
+    /**
+     * 如果i处的值更小，则返回true
+     */
+    private boolean smaller(int i, int j) {
+        BigDecimal a = new BigDecimal(heapQueue.get(i).toString());
+        BigDecimal b = new BigDecimal(heapQueue.get(j).toString());
+        return a.compareTo(b) < 0;
+    }
+
+    /**
+     * 交换i处和j处的值
+     */
+    private void exchange(int i, int j) {
+        T tmp = heapQueue.get(i);
+        heapQueue.set(i, heapQueue.get(j));
+        heapQueue.set(j, tmp);
+    }
 }
 
 
+/**
+ * 测试类
+ */
 class PriorityQueueMinTest {
-    public static void main(String[] args){
-        PriorityQueueMin<Integer> priorityQueue = new PriorityQueueMin<>(10);
-        priorityQueue.tailInsert(19);
-        priorityQueue.tailInsert(22);
-        priorityQueue.tailInsert(43);
-        priorityQueue.tailInsert(10);
+    public static void main(String[] args) {
+        PriorityQueueMin<Integer> priorityQueueMax01 = new PriorityQueueMin<>();
+        priorityQueueMax01.inQueue(22);
+        priorityQueueMax01.inQueue(3452);
+        priorityQueueMax01.inQueue(12341);
+        priorityQueueMax01.inQueue(34);
+        priorityQueueMax01.inQueue(13);
+        priorityQueueMax01.inQueue(17876876);
 
-        System.out.println(priorityQueue.headEject()); //输出：10
-        System.out.println(priorityQueue.headEject()); //输出：22
-        System.out.println(priorityQueue.headEject()); //输出：43
+        System.out.println("获取优小队列中最优小的数据：" + priorityQueueMax01.getMinPriority());
+        System.out.println("获取优小队列中最优小的数据：" + priorityQueueMax01.getMinPriority());
+
+        PriorityQueueMin<BigDecimal> priorityQueueMax02 = new PriorityQueueMin<>();
+        priorityQueueMax02.inQueue(new BigDecimal("2222222222"));
+        priorityQueueMax02.inQueue(new BigDecimal("352345"));
+        priorityQueueMax02.inQueue(new BigDecimal("9879789678"));
+        priorityQueueMax02.inQueue(new BigDecimal("23413"));
+        priorityQueueMax02.inQueue(new BigDecimal("321.31434"));
+        System.out.println("获取优小队列中最优小的数据：" + priorityQueueMax02.getMinPriority());
+        System.out.println("获取优小队列中最优小的数据：" + priorityQueueMax02.getMinPriority());
     }
-
 }
