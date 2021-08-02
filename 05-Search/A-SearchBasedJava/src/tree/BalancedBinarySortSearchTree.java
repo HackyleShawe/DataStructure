@@ -1,4 +1,4 @@
-package d_tree;
+package tree;
 
 /**
  * 平衡二叉排序查找树

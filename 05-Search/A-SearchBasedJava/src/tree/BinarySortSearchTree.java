@@ -1,18 +1,26 @@
-package d_tree;
+package tree;
 
 /**
  * 二叉查找排序树
  */
 public class BinarySortSearchTree<K extends Comparable<K>, V> {
-    private Node root; //根节点
-    private Long N; //节点的个数
+    /** 根节点 */
+    private Node root;
+    /** 节点的个数 */
+    private int N;
 
-    /*树的节点*/
+    /**
+     * 树的节点
+     */
     private class Node {
-        private K key; //该节点的键
-        private V value; //该节点的值
-        private Node left; //左子树
-        private Node right; //右子树
+        /** 该节点的键 */
+        private K key;
+        /** 该节点的值 */
+        private V value;
+        /** 左子树 */
+        private Node left;
+        /** 右子树 */
+        private Node right;
         public Node(K key, V value, Node left, Node right) {
             this.key = key;
             this.value = value;
@@ -21,29 +29,45 @@ public class BinarySortSearchTree<K extends Comparable<K>, V> {
         }
     }
 
-    /*增*/
+    /**
+     * 构造器
+     */
+    BinarySortSearchTree() {
+        root = null;
+        N = 0;
+    }
+
+    /**
+     * 增：向二叉排序搜索树中添加新值
+     */
     public void put(K key, V value) {
         root = putElement(root,key,value);
     }
     private Node putElement(Node node, K key, V value) {
         //如果树为空，则新建一个树结点返回
         if(node == null) {
+            N++;
             return new Node(key, value, null, null);
         }
 
         //比较要插入的结点和树结点的大小，从而确定应该插入的位置
         int cmp = key.compareTo(node.key);
-        if(cmp>0) { //插入的结点值要大，则继续找该树的右子树
+        if(cmp>0) {
+            //插入的结点值要大，则继续找该树的右子树
             node.right = putElement(node.right, key, value);
-        } else if(cmp <0) { //插入的节点值要小，则继续找该树的左子树
+        } else if(cmp <0) {
+            //插入的节点值要小，则继续找该树的左子树
             node.left = putElement(node.left, key, value);
-        } else { //插入的节点值等于该树当前的结点值，则替换(这就是二叉查找树的修改操作)
+        } else {
+            //插入的节点值等于该树当前的结点值，则替换(这就是二叉查找树的修改操作)
             node.value = value;
         }
         return node;
     }
 
-    /*查*/
+    /**
+     * 查：在二叉排序搜索树中查询某个元素
+     */
     public V get(K key) {
         return getElement(root,key);
     }
@@ -55,16 +79,21 @@ public class BinarySortSearchTree<K extends Comparable<K>, V> {
 
         //如果当前树结点不为空
         int cmp = key.compareTo(node.key);
-        if(cmp > 0) { //要查找的值大于当前结点的值，则继续向右子树查找
+        if(cmp > 0) {
+            //要查找的值大于当前结点的值，则继续向右子树查找
             return getElement(node.right,key);
-        } else if(cmp <0) { //要查找的值小于当前结点的值，则继续向左子树查找
+        } else if(cmp <0) {
+            //要查找的值小于当前结点的值，则继续向左子树查找
             return getElement(node.left,key);
-        } else { //找到要查找的值
+        } else {
+            //找到要查找的值
             return node.value;
         }
     }
 
-    /*删*/
+    /**
+     * 删：在二叉排序搜索树中删除某个元素
+     */
     public void delete(K key) {
         deleteElement(root,key);
     }
@@ -75,11 +104,14 @@ public class BinarySortSearchTree<K extends Comparable<K>, V> {
 
         //如果当前树结点不为空
         int cmp = key.compareTo(node.key);
-        if(cmp > 0) { //要查找的值大于当前结点的值，则继续向右子树查找
+        if(cmp > 0) {
+            //要查找的值大于当前结点的值，则继续向右子树查找
             node.right = deleteElement(node.right, key);
-        } else if(cmp <0) { //要查找的值小于当前结点的值，则继续向左子树查找
+        } else if(cmp <0) {
+            //要查找的值小于当前结点的值，则继续向左子树查找
             node.left = deleteElement(node.left, key);
-        } else { //找到要删除的结点，把该结点的左子树最大或右子树最小结点取下，放在要删除的位置
+        } else {
+            //找到要删除的结点，把该结点的左子树最大或右子树最小结点取下，放在要删除的位置
             if(node.right == null) { //要删除的结点没有右子树，则直接把左子树取下放在将要删除的位置
                 return node.left;
             }
@@ -112,12 +144,22 @@ public class BinarySortSearchTree<K extends Comparable<K>, V> {
     }
 }
 
+
+/**
+ * 测试：二叉排序查找树
+ */
 class BinarySortSearchTreeTest {
     public static void main(String[] args) throws Exception {
         BinarySortSearchTree<Integer,String> binaryTree = new BinarySortSearchTree<>();
-        binaryTree.put(20,"bbb"); //注意，插入的顺序决定是否能够一颗排序二叉树，例如：3,1,2暂时构不成一棵排序二叉树
-        binaryTree.put(30,"cccc");
+        binaryTree.put(20,"ad");
+        binaryTree.put(23,"cd");
+        binaryTree.put(15,"badfbb");
+        binaryTree.put(56,"dsaf");
+        binaryTree.put(35,"adfc");
+        binaryTree.put(30,"sadd");
         binaryTree.put(10,"aaaa");
+
+        System.out.println("将断点打至此处，调试模式查看binaryTree是否为自己想要构造的二叉排序查找树");
 
         System.out.println(binaryTree.get(10));
         System.out.println(binaryTree.get(20));

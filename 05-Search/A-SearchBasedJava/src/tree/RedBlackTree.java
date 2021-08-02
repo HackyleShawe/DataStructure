@@ -1,21 +1,24 @@
-package d_tree;
-
-import com.sun.jdi.Value;
+package tree;
 
 /**
  * 红黑树(基于二叉排序树和2-3树)
  */
 public class RedBlackTree<Key extends Comparable<Key>, Value> {
-    private Node root; //根节点
-    private int N; //节点个数
+    /** 根节点 */
+    private Node root;
+    /** 节点个数 */
+    private int N;
 
-    //红黑树节点的定义
+    /**
+     * 红黑树节点的定义
+     */
     private class Node {
         public Key key;
         public Value value;
         public Node left;
         public Node right;
-        public boolean parentLinkThisNodeIsRed; //由其父结点指向它的链接的颜色
+        /** 由其父结点指向它的链接的颜色 */
+        public boolean parentLinkThisNodeIsRed;
         public Node(Key key, Value value, Node left, Node right, boolean linkChildIsRed) {
             this.key = key; this.value = value; this.left = left;
             this.right = right; this.parentLinkThisNodeIsRed = linkChildIsRed;
@@ -77,16 +80,13 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * 值的插入操作(插入一个键值对)
-     * @param key
-     * @param value
+     * 红黑树的插入操作：插入一个键值对
      */
     public void put(Key key, Value value) {
         root = put(root,key,value);
         //根结点的颜色总是黑色
         root.parentLinkThisNodeIsRed = false;
     }
-
     private Node put(Node node, Key key, Value value) {
         //如果为空则直接返回一个红色的结点就可以了
         if(node == null) {
@@ -145,6 +145,10 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 }
 
+
+/**
+ * 测试：红黑树
+ */
 class RedBlackTreeTest {
     public static void main(String[] args){
         RedBlackTree<Integer,String> redBlackTree = new RedBlackTree<>();
@@ -152,8 +156,7 @@ class RedBlackTreeTest {
         redBlackTree.put(24,"枫力恋");
         redBlackTree.put(55,"波多老师");
         redBlackTree.put(19,"桃乃木香奈");
-        //注意：插入的顺序不一定能构成一个二叉查找树
-        //例如：33 24 55 19 20目前还构不成一个二叉查找树
+        System.out.println("将断点打至此处，调试模式查看redBlackTree是否为自己想要构造的红黑树");
 
         System.out.println(redBlackTree.get(19));
         redBlackTree.put(19,"衣吹花音");
