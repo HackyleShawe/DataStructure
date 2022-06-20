@@ -1,8 +1,6 @@
 /*
  * 需求：将两个有序数组合并为一个
  */
-
-
 #include <stdio.h>
 #define M 3
 #define N 3
