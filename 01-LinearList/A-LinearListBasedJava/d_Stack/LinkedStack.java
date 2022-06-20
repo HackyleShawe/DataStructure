@@ -1,4 +1,3 @@
-package d_stack;
 
 import java.util.Iterator;
 

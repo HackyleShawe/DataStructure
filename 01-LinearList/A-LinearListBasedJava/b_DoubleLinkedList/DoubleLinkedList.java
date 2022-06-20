@@ -1,4 +1,3 @@
-package b_LinkedList;
 
 import java.util.Iterator;
 import java.util.LinkedList;

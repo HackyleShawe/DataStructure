@@ -1,4 +1,3 @@
-package c_queue;
 
 import org.w3c.dom.Node;
 
