@@ -25,7 +25,7 @@ public class ArraySplit {
             if(x++ < count) {
                 tmpList.add(dataList.get(i));
             }
-            //收集到了count个 或者 dataList中最后不足count个元素
+            //收集到了count个 或者 到dataList中最后一个元素
             if(x==count || i==length-1){
                 x = 0;
                 resultList.add(tmpList);
@@ -71,7 +71,7 @@ public class ArraySplit {
                 stringBuilder.append(dataList.get(i)).append("、");
             }
             
-            //收集到了count个 或者 dataList中最后不足count个元素
+            //收集到了count个 或者 到dataList中最后一个元素
             if(x == 4 || i==len-1) {
                 x = 0;
                 resultList.add(stringBuilder.deleteCharAt(stringBuilder.length()-1).toString());

@@ -35,6 +35,10 @@ void dynamic_array()
 	{
 		printf("%d ", a[i]);
 	}
+
+	if (a != NULL) {
+		free(a);
+	}
 }
 
 int main()
