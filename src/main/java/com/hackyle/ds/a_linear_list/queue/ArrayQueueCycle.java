@@ -1,3 +1,5 @@
+package com.hackyle.ds.a_linear_list.queue;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -64,10 +66,8 @@ public class ArrayQueueCycle<T> {
         return (tail + 1) % N == head;
     }
 
-}
 
 
-class ArrayQueueCycleTest {
     @Test
     public void test01() {
         ArrayQueueCycle<String> queue = new ArrayQueueCycle<>();

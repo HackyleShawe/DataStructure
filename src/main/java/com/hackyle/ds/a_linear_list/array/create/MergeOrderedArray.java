@@ -7,10 +7,11 @@ import java.util.Random;
 
 public class MergeOrderedArray {
     /**
-     * 函数功能：合并两个有序数组
+     * 合并两个有序数组
      * 算法：
-     *  1.同时遍历两个有序数组，将符合条件的下标前进，不符合条件的下标不动；
-     *  2.看那个数组还有剩余，将剩余的依次顺序加入到新的数组即可；
+     *  用两个指针分别指向两个数组起点，比较元素大小，小的放入结果数组，对应指针后移；
+     *  剩余元素直接追加；
+     *  时间复杂度 O (m+n)，空间 O (m+n)。
      */
     public static int[] mergeOrderedArray(int[] arr, int[] brr) {
         int alen = arr.length;
@@ -38,19 +39,7 @@ public class MergeOrderedArray {
 
         return resultArr;
     }
-}
 
-class MergeOrderedArrayTest {
-    public int[] genRandomArr(int len, int bound) {
-        len = len < 1 ? 10 : len;
-        int[] arr = new int[len];
-        Random random = new Random();
-        for (int i = 0; i < len; i++) {
-            int ranVal = random.nextInt(bound);
-            arr[i] = ranVal;
-        }
-        return arr;
-    }
 
     @Test
     public void testPartInterchange() {
@@ -72,4 +61,16 @@ class MergeOrderedArrayTest {
         int[] orderedArray = MergeOrderedArray.mergeOrderedArray(arr, brr);
         System.out.println("orderedArray: " + Arrays.toString(orderedArray)  + "; length: " + orderedArray.length);
     }
+    public int[] genRandomArr(int len, int bound) {
+        len = len < 1 ? 10 : len;
+        int[] arr = new int[len];
+        Random random = new Random();
+        for (int i = 0; i < len; i++) {
+            int ranVal = random.nextInt(bound);
+            arr[i] = ranVal;
+        }
+        return arr;
+    }
+
 }
+

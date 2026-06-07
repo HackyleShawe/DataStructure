@@ -1,5 +1,4 @@
-
-import org.w3c.dom.Node;
+package com.hackyle.ds.a_linear_list.queue;
 
 import java.util.Iterator;
 
@@ -112,13 +111,7 @@ class LinkedQueue<T> implements Iterable<T> {
             return tmp.data;
         }
     }
-}
 
-
-/**
- * 链式队列测试
- */
-class LinkedQueueTest {
     public static void main(String[] args) {
         LinkedQueue<String> queue = new LinkedQueue<>();
         queue.enqueue("aa");
@@ -135,3 +128,4 @@ class LinkedQueueTest {
     }
 
 }
+

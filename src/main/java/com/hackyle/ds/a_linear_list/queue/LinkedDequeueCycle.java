@@ -1,3 +1,4 @@
+package com.hackyle.ds.a_linear_list.queue;
 
 import org.junit.jupiter.api.Test;
 
@@ -170,12 +171,8 @@ public class LinkedDequeueCycle<T> {
         }
         System.out.println();
     }
-}
 
-/**
- * 双向循环链表的测试
- */
-class LinkedDequeueCycleTest {
+
 
     /**
      * 多个元素在头部进、出队列，在尾部进、出队列

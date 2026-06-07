@@ -38,9 +38,8 @@ public class DelByUnorderedRange {
 
         return resultArr;
     }
-}
 
-class DelByUnorderedRangeTest {
+
     public int[] genRandomArr(int len, int bound) {
         len = len < 1 ? 10 : len;
         int[] arr = new int[len];

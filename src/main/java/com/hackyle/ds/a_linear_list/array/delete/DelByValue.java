@@ -29,9 +29,8 @@ public class DelByValue {
 
         return resultArr;
     }
-}
 
-class DelByValueTest {
+
     public int[] genRandomArr(int len, int bound) {
         len = len < 1 ? 10 : len;
         int[] arr = new int[len];

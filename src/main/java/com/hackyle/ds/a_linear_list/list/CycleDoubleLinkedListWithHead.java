@@ -82,11 +82,9 @@ public class CycleDoubleLinkedListWithHead<T> {
             tmp = tmp.next;
         }
     }
-}
 
 
 
-class CycleDoubleLinkedListWithHeadTest {
     @Test
     public void test01() {
         CycleDoubleLinkedListWithHead<Integer> doubleList = new CycleDoubleLinkedListWithHead<>();

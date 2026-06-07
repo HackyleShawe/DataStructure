@@ -173,13 +173,7 @@ public class DoubleLinkedList<T> implements Iterable<T> {
         }
     }
 
-}
 
-
-/**
- * 双向链表测试
- */
-class DoubleLinkedListTest {
     public static void main(String[] args) throws Exception {
         DoubleLinkedList<Integer> linkedList = new DoubleLinkedList<Integer>();
         linkedList.insertHead(11);

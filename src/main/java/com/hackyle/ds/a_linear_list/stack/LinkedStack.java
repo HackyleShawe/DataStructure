@@ -94,13 +94,6 @@ public class LinkedStack<T> implements Iterable<T>  {
         }
     }
 
-}
-
-
-/**
- * 链式栈测试
- */
-class LinkedStackTest {
     public static void main(String[] args) {
         LinkedStack<String> stack = new LinkedStack<String>();
         stack.push("aa");

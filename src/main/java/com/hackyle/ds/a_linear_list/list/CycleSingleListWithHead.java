@@ -98,14 +98,7 @@ public class CycleSingleListWithHead<T> {
             tmp = tmp.next;
         }
     }
-}
 
-
-
-/**
- * 测试
- */
-class CycleSingleListWithHeadTest {
 
     /**
      * 测试头插法、尾巴插法

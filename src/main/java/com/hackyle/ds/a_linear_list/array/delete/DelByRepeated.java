@@ -30,9 +30,8 @@ public class DelByRepeated {
         if (k >= 0) System.arraycopy(arr, 0, resultArr, 0, k);
         return resultArr;
     }
-}
 
-class DelByRepeatedTest {
+
     public int[] genRandomArr(int len, int bound) {
         len = len < 1 ? 10 : len;
         int[] arr = new int[len];

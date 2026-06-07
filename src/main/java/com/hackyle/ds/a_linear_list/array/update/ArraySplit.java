@@ -1,4 +1,4 @@
-package com.hackyle.ds.a_linear_list.array.delete;
+package com.hackyle.ds.a_linear_list.array.update;
 
 
 import org.junit.jupiter.api.Test;

@@ -1,3 +1,5 @@
+package com.hackyle.ds.a_linear_list.queue;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -61,11 +63,7 @@ public class LinkedQueueCycle<T> {
             tmp = tmp.next;
         }
     }
-}
 
-
-
-class LinkedQueueCycleTest {
     @Test
     public void test01() {
         LinkedQueueCycle<String> queueCycle = new LinkedQueueCycle<>();

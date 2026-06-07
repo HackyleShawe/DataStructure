@@ -1,6 +1,5 @@
 package com.hackyle.ds.a_linear_list.array;
 
-
 import java.util.Iterator;
 
 /**
@@ -147,14 +146,10 @@ public class SequenceList<T> implements Iterable<T> {
             return elements[index++];
         }
     }
-}
 
 
 
-/**
- * 测试
- */
-class SequenceListTest {
+
     public static void main(String[] args) throws Exception {
         SequenceList<Integer> list = new SequenceList<>(3);
         list.insert(2);
@@ -180,3 +175,5 @@ class SequenceListTest {
         }
     }
 }
+
+

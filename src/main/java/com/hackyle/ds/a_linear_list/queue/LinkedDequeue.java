@@ -1,3 +1,4 @@
+package com.hackyle.ds.a_linear_list.queue;
 
 import org.junit.jupiter.api.Test;
 
@@ -133,10 +134,8 @@ public class LinkedDequeue<T> {
         }
         System.out.println();
     }
-}
 
 
-class LinkedDequeueTest {
     @Test
     public void test01() {
         LinkedDequeue<String> dequeue = new LinkedDequeue<>();

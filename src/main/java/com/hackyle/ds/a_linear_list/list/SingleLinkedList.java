@@ -189,14 +189,8 @@ public class SingleLinkedList<T> implements Iterable<T>  {
             return t.data;
         }
     }
-}
 
 
-
-/**
- * 单向链表测试
- */
-class SingleLinkedListTest {
     public static void main(String[] args) throws Exception {
         SingleLinkedList<Integer> linkedList = new SingleLinkedList<Integer>();
         linkedList.insertByTail(11);

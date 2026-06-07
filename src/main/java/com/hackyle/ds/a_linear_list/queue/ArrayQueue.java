@@ -1,3 +1,5 @@
+package com.hackyle.ds.a_linear_list.queue;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -50,10 +52,8 @@ public class ArrayQueue<T> {
             System.out.print(arrayList.get(i) + " ");
         }
     }
-}
 
 
-class ArrayQueueTest {
     @Test
     public void test01() {
         ArrayQueue<String> queue = new ArrayQueue<>();
